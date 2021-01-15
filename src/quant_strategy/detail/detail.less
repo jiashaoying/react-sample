@@ -1,0 +1,120 @@
+@import (reference) "../../../kmc/src/css/kmc-common.less";
+
+body {
+  background-color: #ffffff;
+}
+
+.detail-mainpart {
+  font-size       : 14px;
+  color: #333333;
+  .div-separate {
+    width: 100%;
+    height: 8px;
+    background-color: #F4F4F4;
+  }
+  .introduction-section {
+    margin-top: 20px;
+    padding: 15px 15px;
+    .stra-title {
+      margin-bottom: 15px;
+      font-size  : 15px;
+      color: #000;
+    }
+    .des-content {
+      font-size   : 14px;
+      color: #333333;
+      line-height: 22px;
+    }
+  }
+  .adviser-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 0 15px;
+    font-size       : 14px;
+    color: #333333;
+    height: 76px;
+    .intro-text {
+      margin: 15px 0;
+      width: 55%;
+      .phone-number {
+        color: #ff3836;
+      }
+    }
+    .intro-image {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 35%;
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+  .strategy-rate-table {
+    margin: 5px 0px;
+    padding: 10px 15px;
+    font-size       : 15px;
+    color: #262836;
+    .rate-table {
+      border-radius   : 5px;
+      border-spacing:0px;
+      overflow:hidden;
+      margin: 0px 0px 0px 0px;
+      padding: 0px;
+      border: 1px solid #f89528;
+      width: 100%;
+      td {
+        height: 40px;
+        span.up {
+          color: @color-zd-zhang  !important;
+        }
+        span.down {
+          color: @color-zd-die  !important;
+        }
+        span.same {
+          color: @color-normal-text
+        }
+      }
+      .column-title {
+        padding-left: 15px;
+        text-align: left;
+      }
+      .column-value {
+        width: 30%;
+        text-align: center;
+        border-left: 1px solid #f89528;
+      }
+      tr:nth-child(1), tr:nth-child(3), tr:nth-child(5), tr:nth-child(7){
+        background-color: #ffffff;
+      }
+      tr:nth-child(2), tr:nth-child(4), tr:nth-child(6), tr:nth-child(8){
+        background-color: #FEF2E2;
+      }
+    }
+  }
+  .chart-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0px 15px;
+    font-size       : 14px;
+    color: #333333;
+    border: 0px;
+    .echarts-for-react {
+      background-color: #F6F7F7;
+      padding: 5px 10px;
+    }
+    .chart-tips {
+      margin-top: 20px;
+      padding-bottom: 10px;
+      font-size: 12px;
+      line-height: 20px;
+      color: #7c7a86;
+    }
+  }
+}

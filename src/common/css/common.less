@@ -1,0 +1,167 @@
+body{
+  background-color: @color-jy-bg;
+  font-family: "PingFangSC-Regular";
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-weight-over: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  min-width: 320px;
+  main {
+      height: 100%;
+  }
+}
+html[apptheme=night] body{
+  background-color: @night-color3;
+}
+*{
+  padding: 0px;
+  margin: 0px;
+}
+input {
+  -webkit-appearance: none;
+}
+
+/** 调色板 **/
+@color1:  #DE323A; //“涨”，“涨”相关数字/背景色块
+@color2:  #54B88E; //“跌”，“跌”相关数字/背景色块
+@color3:  #4898F6; //主色调
+@color4:  #F3F7FF; //icon辅助色
+@color5:  #FFFFFF; //卡片背景色、深色背景反白
+@color6:  #F6F6F6; //背景色
+@color7:  #ECECEC; //分割线、卡片边缘描色边
+@color8:  #7D7D7D; //底部菜单颜色
+@color9:  #BFBFBF; //次要文字、输入框文字
+@color10: #939393; //常规文字、副标题、表格标题、时间
+@color11: #333333; //常规文字、内容标题
+@color12: #FF883C; //线、环形图、柱状图、饼状图
+@color13: #FAC13E;
+@color14: #2070F1;
+@color15: #BB61EF;
+@color16: #EC8B89; //部分按钮用色
+@color17: #8BC6AE;
+@color18: #459473;
+@color19: #F64851; //功能区用色（icon、分时图、K线图）
+@color20: #54B881;
+@color21: #ffffff; //白色文字
+@color22: #F64851; //强调文字
+@color23: #DE323A; //切换卡用色
+@color24: #FFECEA; //详细分时图辅助色
+@color25: #F55961; // 分红标签颜色
+
+/** 调色板 **/
+@night-color1:  #db343f; //“涨”，“涨”相关数字/背景色块
+@night-color2:  #0db672; //“跌”，“跌”相关数字/背景色块
+@night-color3:  #1c1e21; //主色调
+@night-color4:  #23252a; //icon辅助色
+@night-color5:  #23252a; //卡片背景色、深色背景反白
+@night-color6:  #1c1e21; //背景色
+@night-color7:  #1c1e21; //分割线、卡片边缘描色边
+@night-color8:  #7D7D7D; //底部icon颜色
+@night-color9:  #BFBFBF; //次要文字、输入框文字
+@night-color10: #939393; //常规文字、副标题、表格标题、时间
+@night-color11: #333333; //常规文字、内容标题
+@night-color12: #FF883C; //线、环形图、柱状图、饼状图
+@night-color13: #FAC13E;
+@night-color14: #2070F1;
+@night-color15: #BB61EF;
+@night-color16: #EC8B89; //部分按钮用色
+@night-color17: #DE323A;
+@night-color18: #8BC6AE;
+@night-color19: #459473;
+@night-color20: #21385f;
+@night-color21: #4898F6;
+@night-color22: #DE323A; //功能区用色（icon、分时图、K线图）
+@night-color23: #54B88E;
+@night-color24: #ffffff; //白色文字
+@night-color25: #DE323A; //强调文字
+@night-color26: #4898F6; //切换卡用色
+@night-color27: #21385F; //详细分时图辅助色
+@night-color28: #49383C; //仅交易页面，买入界面下拉框用色
+@night-color29: #F55961; // 分红标签颜色
+
+/** 顶部栏、底部菜单栏、交易模块颜色定义 **/
+/*主色调背景*/
+@color-main-bg:                         @color3;
+/*主色调字体颜色*/
+@color-main-text:                       @color3;
+/*主色调边框颜色*/
+@color-main-border:                     @color3;
+/*交易背景色*/
+@color-jy-bg:                           @color6;
+/*顶部背景色*/
+@color-top-bg:                          @color3;
+/*卡片背景色*/
+@color-card-bg:                         @color5;
+/*顶部tab切换*/
+@color-tab-line:                        @color3;
+@color-tab-label:                       @color8;
+/*菜单标题及子标题字体颜色*/
+@color-menu-label:                      @color11;
+@color-menu-subLabel:                   @color9;
+/*登录按钮背景色*/
+@color-divider:                         @color7;
+/*白色文字*/
+@color-white:                           @color21;
+/*辅助背景色*/
+@color-icon-bg:                         @color4;
+/*输入框颜色*/
+@color-input-normal-border:             @color9;
+@color-input-border:                    @color7;
+@color-input-border-buy:                @color1;
+@color-input-border-sell:               @color18;
+@color-input-bg:                        @color5;
+@color-input-color:                     @color11;
+@color-input-placeholder:               @color9;
+@color-input-label:                     @color11;
+@color-input-border-focus:              #51a7e8;
+/*按钮颜色*/
+@color-btn-buy:                         @color1;
+@color-btn-buy2:                        @color16;
+@color-btn-sell:                        @color2;
+@color-btn-sell2:                       @color17;
+@color-btn-text:                        @color21;
+@color-btn-text-buy:                    @color1;
+@color-btn-text-sell:                   @color18;
+/*标签、标题颜色*/
+@color-normal-text:                     @color11;
+@color-sub-text:                        @color10;
+@color-minor-text:                      @color9;
+/*涨跌停颜色*/
+@color-zd-zhang:                        @color1;
+@color-zd-die:                          @color18;
+@color-zd-die2:                         @color2;
+@color-zd-ping:                         @color11;
+@color-zd-ting:                         @color11;
+/*表格颜色*/
+@color-table-head:                      @color10;
+@color-table-border:                    @color7;
+@color-table-text:                      @color11;
+@color-table-subText:                   @color9;
+@color-table-sell:                      @color13;
+/*下拉选择框*/
+@color-dropDown-text:                   @color11;
+@color-dropDown-subText:                @color10;
+@color-dropDown-divider:                @color6;
+@color-dropDown-select:                 @color6;
+@color-dropDown-select-buy:             @color4;
+@color-dropDown-select-sell:            rgba(139,198,174,0.30);
+@color-statusBar-bg:                    @color3;
+/*持仓页面买入、卖出、行情按钮背景色*/
+@color-cc-buy:                          @color12;
+@color-cc-sell:                         @color3;
+@color-cc-market:                       @color9;
+
+@color-half-transparent:                rgba(0, 0, 0, 0.5);

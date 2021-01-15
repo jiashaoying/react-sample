@@ -1,0 +1,228 @@
+@import (reference) "../../../kmc/src/css/kmc-common.less";
+
+body {
+  background-color: #ffffff;
+}
+
+.home-mainpart {
+  background-image: linear-gradient(#ffa53d 0%, #ffa53d 20%, #ffffff 20%, #ffffff 100%);
+  font-size       : 15px;
+
+  .header-gap {
+    color  : #ffa53d;
+    padding: 10px 15px;
+  }
+
+  .strategy-bar-section {
+    text-align      : center;
+    border-radius   : 5px;
+    box-shadow      : 0 0 21px rgba(197, 197, 197, 0.33);
+    background-color: #fff6ef;
+    margin          : 0 15px;
+    padding         : 20px 15px;
+
+    .period-tab {
+      ul {
+        list-style     : none;
+        height         : 35px;
+        border         : 1px solid #ffa53d;
+        border-radius  : 4px;
+        display        : flex;
+        justify-content: space-evenly;
+
+        li {
+          width       : 33.33%;
+          height      : 35px;
+          color       : #ff6500;
+          line-height : 35px;
+          border-right: 1px solid #ffa53d;
+        }
+
+        li:last-child {
+          border: none;
+        }
+
+        .li-active {
+          color           : #ffffff;
+          border          : 0;
+          box-shadow      : 0 0 9px rgba(254, 119, 51, 0.47);
+          background-image: linear-gradient(90deg, #ffa53d 0%, #ffb95d 0%, #ff7531 100%);
+        }
+      }
+    }
+
+    .header-gap {
+      color     : #ffa53d;
+      padding   : 10px 15px;
+      text-align: left;
+    }
+
+    .chart-part {
+      height     : 230px;
+      padding-top: 5px;
+
+      .latest-period-score {
+        margin-top: 30px;
+        text-align: center;
+
+        .blank {
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  div.chart-title {
+    border-top-left-radius : 13px;
+    border-top-right-radius: 13px;
+    padding                : 20px 15px;
+    border-bottom          : 2px dashed #efefef;
+    color                  : #5f2323;
+    font-weight            : 600;
+    font-size              : 18px;
+
+    .chart-title-label {
+      padding-left    : 4px;
+      margin-right    : 10px;
+      box-shadow      : 0 0 5px rgba(254, 119, 51, 0.47);
+      background-image: linear-gradient(180deg, #ffa53d 0%, #ffb95d 0%, #ff7531 100%);
+    }
+  }
+
+  .free-chart {
+    border-radius   : 13px;
+    box-shadow      : 0 0 21px rgba(197, 197, 197, 0.33);
+    background-color: #ffffff;
+    margin          : 0 15px;
+
+    .swiper-container {
+      padding: 15px 0;
+    }
+  }
+
+  .strategy-list {
+    margin          : 20px 15px;
+    padding         : 10px 0px;
+    border-radius   : 5px;
+    box-shadow      : 0 0 21px rgba(197, 197, 197, 0.33);
+    background-color: #FBFAFAFF;
+    table {
+      width: 100%;
+    }
+    .ant-table-thead {
+      background-color: rgb(246, 246, 246);
+      text-align      : center;
+      height          : 30px;
+      font-size       : 14px;
+
+      th {
+        text-align: center;
+      }
+
+      th:nth-child(1) {
+        background-color: #eaeaea;
+      }
+
+      th:nth-child(2) {
+        background-color: #fef2e2;
+      }
+
+      th:nth-child(3) {
+        background-color: #fdeeee;
+      }
+    }
+
+    .ant-table-tbody {
+      background-color: white;
+
+      td {
+        text-align   : center;
+        height       : 40px;
+        font-size    : 15px;
+        white-space  : nowrap;
+        text-overflow: ellipsis;
+        overflow     : hidden;
+      }
+
+      .ant-table-row {
+        td {
+          padding: 12px 8px;
+        }
+
+        td:nth-child(4) {
+          text-align: right;
+        }
+      }
+
+      div.row-name-td {
+        margin-left: 0px;
+        margin-right: 0px;
+        float  : left;
+        padding: 0px 0px;
+        width  : 100%;
+
+        div {
+          float: left;
+        }
+
+        .label-tag {
+          margin-top               : 0px;
+          margin-bottom            : 0px;
+          height                   : 41px;
+          width                    : 5px;
+          border-top-left-radius   : 8px;
+          border-bottom-left-radius: 8px;
+          box-shadow               : 0 0 5px rgba(254, 119, 51, 0.47);
+          background-image         : linear-gradient(180deg, #ffa53d 0%, #ffb95d 0%, #ff7531 100%);
+        }
+
+        .row-name {
+          margin-left: 15px;
+          width      : 80%;
+          padding    : 10px 0px;
+          text-align : left;
+        }
+      }
+    }
+
+    .tips {
+      bottom    : 0;
+      text-align: center;
+      padding   : 20px;
+      font-size : 13px;
+    }
+
+    tr {
+      text-align: center;
+      height    : 40px;
+      font-size : 15px;
+    }
+
+    .ant-table-pagination {
+      display: none;
+    }
+
+    span.zhang {
+      color: @color-zd-zhang  !important;
+    }
+
+    span.die {
+      color: @color-zd-die  !important;
+    }
+
+    span.ping {
+      color: @color-normal-text
+    }
+
+    .ant-spin {
+      display: none;
+    }
+  }
+
+  .footer {
+    margin   : 20px 15px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    color    : #7c7a86;
+  }
+}
