@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import Axios from 'axios';
 import ReactEcharts from 'echarts-for-react'
-import { formatNumber } from '../../../js/kmc-commonUtils'
-import $ from 'jquery'
+import { formatNumber } from '../../../common/js/commonUtils'
 import { Table } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretRight, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-
-import '../../../kmc/src/css/kmc-common'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import $ from 'jquery'
+import '../../../common/css/common.less'
 import './home.less'
 
 // 翻译字典
@@ -21,38 +20,11 @@ const tabNameDict = {
   1: "最近一月",
   2: "最近一年",
 }
-let refresh = true;
-let context = null;
-
-//分享，原生调用H5方法
-window.jumpToShareH5 = function () {
-  // KmcInteraction.shareScreenImage();
-}
-
-/**
-* 函数功能： 程序退至后台时运行
-*/
-window.onPause = function () {
-  console.log("onPause调用了");
-  refresh = false;
-}
-
-/**
-* 函数功能： 程序切回加载时运行
-*/
-window.onResume = function () {
-  console.log("onResume调用了");
-  refresh = true;
-  if (context != null) {
-    context.componentDidMount();
-  }
-}
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // 策略
       periodSegment: 0,
       strategyTopBarSeries: {},
       strategyTableArray: [],
@@ -63,7 +35,6 @@ class Home extends Component {
     this.handleTabClick = this.handleTabClick.bind(this)
   }
   componentDidMount() {
-    context = this;
     const self = this;
     const request1 = this.requestStrategyRangeData()
     Promise.all([request1]).then((results) => {
@@ -182,13 +153,12 @@ class Home extends Component {
   requestStrategyRangeData = () => {
     return new Promise((resolve, reject) => {
       let url = 'http://wechat-h5.shgsec.com/api/stock-analysis/strategies'
-      $.get(url, response => {
-        resolve(response)
-      })
+      Axios.get(`${url}`).then(response => {
+        resolve(response.data)
+      }).catch(error => console.log(error))
     })
   }
   getTableColumns() {
-    const self = this
     const { periodSegment } = this.state
     return [
       {
@@ -289,12 +259,9 @@ class Home extends Component {
   }
   handleBtnClick(rowModel) {
     console.log(rowModel.strategyID)
-    // KmcInteraction.switchWebView(`${KmcViewList.STRATEGY_DETAIL}?strategyID=${rowModel.strategyID}`, 8, 1);
-    window.location.href = `../detail/detail.html?strategyID=${rowModel.strategyID}`
+    this.props.history.push(`/quant_strategy/detail/${rowModel.strategyID}`);
   }
-  handleConfirm() {
-    this.refs.confirmDialog.hide();
-  }
+
   handleTabClick(event) {
     event.preventDefault()
     $('#score-tab-ul li').removeClass('li-active');
@@ -421,10 +388,12 @@ class Home extends Component {
     const { periodSegment, strategyTopBarSeries, strategyTableArray, strategyReportDate } = this.state;
     const self = this;
     const columns = this.getTableColumns();
-    const rowKey = function (record) {
+    const getRowKey = function (record) {
       return record.strategyID;
     };
-    const onTableRowClick = function (record) {
+    const onTableRowClick = function (record, event) {
+      console.log(record)
+      console.log(event)
       self.handleBtnClick(record);
     }
     return (
@@ -453,8 +422,13 @@ class Home extends Component {
         </div>
         {/* 策略涨幅表格 */}
         <div className="strategy-list">
-          <Table dataSource={strategyTableArray} columns={columns} onRowClick={onTableRowClick} pagination={false}/>
-          {/* <div className="view-more">查看更多</div> */}
+          <Table dataSource={strategyTableArray} columns={columns} rowKey={record=>getRowKey(record)} onRow={record => {
+            return {
+              onClick: (event) => {
+                onTableRowClick(record, event)
+              }
+            }
+          }} pagination={false}/>
         </div>
         <div className="footer">
           数据统计截止：{strategyReportDate}
@@ -466,4 +440,4 @@ class Home extends Component {
   }
 }
 
-ReactDOM.render(<Home />, document.getElementById("strategy-home-main"));
+export default Home;

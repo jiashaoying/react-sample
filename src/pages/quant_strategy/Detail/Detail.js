@@ -1,45 +1,12 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import ReactEcharts from 'echarts-for-react'
-import Echarts from 'echarts';
-import { formatNumber } from '../../../js/kmc-commonUtils'
-import { getQueryString } from '../../../js/kmc-commonUtils'
-import $ from 'jquery'
-import '../../../kmc/src/css/kmc-common'
+import { formatNumber} from '../../../common/js/commonUtils'
+import Axios from 'axios';
+
+import '../../../common/css/common.less'
 import './detail.less'
 
-let refresh = true;
-let context = null;
-//分享，原生调用H5方法
-window.jumpToShareH5 = function () {
-
-}
-
-//设置股票代码，原生向H5传递参数
-window.setLocalStockCode = function (stockCode) {
-
-}
-
-/**
-* 函数功能： 程序退至后台时运行
-*/
-window.onPause = function () {
-  console.log("onPause调用了");
-  refresh = false;
-}
-
-/**
-* 函数功能： 程序切回加载时运行
-*/
-window.onResume = function () {
-  console.log("onResume调用了");
-  refresh = true;
-  if (context != null) {
-    context.componentDidMount();
-  }
-}
-
-class Home extends Component {
+class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,13 +21,10 @@ class Home extends Component {
     }
   }
 
-  handleConfirm() {
-    this.refs.confirmDialog.hide();
-  }
   componentDidMount() {
-    context = this;
+    console.log(this.props)
     const self = this;
-    let strategyID = getQueryString('strategyID')
+    let strategyID = this.props.match.params.id
     const request1 = this.requestStrategyDetailData(strategyID)
     Promise.all([request1]).then((results) => {
       console.log(results[0].strategy)
@@ -96,9 +60,9 @@ class Home extends Component {
   requestStrategyDetailData = (param) => {
     return new Promise((resolve, reject) => {
       let url = `http://wechat-h5.shgsec.com/api/stock-analysis/strategies/${param}`
-      $.get(url, response => {
-        resolve(response)
-      })
+      Axios.get(`${url}`).then(response => {
+        resolve(response.data)
+      }).catch(error => console.log(error))
     })
   }
 
@@ -108,7 +72,6 @@ class Home extends Component {
       tooltip: {
         show: true,
         trigger: 'axis',
-        // formatter: '{a0} :{c0}<br />{a1}:{c1}%',
       },
       toolbox: {
         show: false
@@ -129,7 +92,6 @@ class Home extends Component {
         right: 'auto',
         bottom: '20px',
         height: 'auto',
-        // containLabel: true
       },
       xAxis: {
         type: 'category',
@@ -143,7 +105,6 @@ class Home extends Component {
         axisLabel: {  
           inside: true,
           interval: 'auto',  
-          // formatter: '{value} %'  
         },
         min: function(value) {
           return value.min
@@ -167,18 +128,6 @@ class Home extends Component {
           itemStyle: {
             color: '#E83428'
           },
-          // areaStyle: {
-          //   color: new Echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-          //     offset: 0,
-          //     color: '#EA7E77'
-          //   }, {
-          //     offset: 0.2,
-          //     color: '#EDD4D3'
-          //   }, {
-          //     offset: 1,
-          //     color: '#F6F7F7'
-          //   }])
-          // },
         },
         {
           name: '沪深300',
@@ -189,18 +138,6 @@ class Home extends Component {
           itemStyle: {
             color: '#0D6FB8'
           },
-          // areaStyle: {
-          //   color: new Echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-          //     offset: 0,
-          //     color: '#3182C0'
-          //   }, {
-          //     offset: 0.3,
-          //     color: '#D2DAE5'
-          //   }, {
-          //     offset: 1,
-          //     color: '#F6F7F7'
-          //   }])
-          // },
         }
       ]
     };
@@ -300,4 +237,4 @@ class Home extends Component {
   }
 }
 
-ReactDOM.render(<Home />, document.getElementById("strategy-detail-main"));
+export default Detail;

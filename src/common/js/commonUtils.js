@@ -5,18 +5,18 @@
 */
 export function transferUnit(value, decimalDigit) {
   if (!isNaN(value) && value != '') {
-      let result = parseInt(value);
-      const len = (result + "").length;
-      decimalDigit = decimalDigit ? parseInt(decimalDigit) : 0;
-      if (len <= 4) {
-          return isNaN(Number(value)) ? value : Number(value).toFixed(decimalDigit);
-      } else if (len > 4 && len <= 8) {
-          return (result / 10000).toFixed(decimalDigit) + "万";
-      } else if (len > 8) {
-          return (result / 100000000).toFixed(decimalDigit) + "亿";
-      }
+    let result = parseInt(value);
+    const len = (result + "").length;
+    decimalDigit = decimalDigit ? parseInt(decimalDigit) : 0;
+    if (len <= 4) {
+      return isNaN(Number(value)) ? value : Number(value).toFixed(decimalDigit);
+    } else if (len > 4 && len <= 8) {
+      return (result / 10000).toFixed(decimalDigit) + "万";
+    } else if (len > 8) {
+      return (result / 100000000).toFixed(decimalDigit) + "亿";
+    }
   } else {
-      return value;
+    return value;
   }
 }
 
@@ -26,37 +26,37 @@ export function transferUnit(value, decimalDigit) {
 ====================================================================*/
 export function formatNumber(num, fixedPoint) {
   if (num === undefined || isNaN(num) || num === null || num === "") {
-      return "";
+    return "";
   }
 
   fixedPoint = fixedPoint == undefined || fixedPoint == null ? "" : fixedPoint;
 
-  num = (typeof(num) == 'string') ? parseFloat(num) : num;
+  num = (typeof (num) == 'string') ? parseFloat(num) : num;
 
   if (fixedPoint != "") {
 
-      return (num.toFixed(fixedPoint) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+    return (num.toFixed(fixedPoint) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
   } else {
 
-      num += "";
+    num += "";
 
-      var point = num.indexOf(".");
-      var len = num.length;
+    var point = num.indexOf(".");
+    var len = num.length;
 
-      //        数据为整型数          数据为浮点数
-      var back = (point == -1) ? "" : num.slice(point - len);
+    //        数据为整型数          数据为浮点数
+    var back = (point == -1) ? "" : num.slice(point - len);
 
-      // 判断符号位
-      var sign = num.slice(0, 1);
+    // 判断符号位
+    var sign = num.slice(0, 1);
 
-      point = (point == -1) ? len : point;
+    point = (point == -1) ? len : point;
 
-      // 为负数,从第二位数字进行千分位转换
-      var front = (sign == "-") ? num.slice(1, point) : num.slice(0, point);
+    // 为负数,从第二位数字进行千分位转换
+    var front = (sign == "-") ? num.slice(1, point) : num.slice(0, point);
 
-      sign = (sign == "-") ? sign : "";
+    sign = (sign == "-") ? sign : "";
 
-      return sign + (front + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,') + back;
+    return sign + (front + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,') + back;
   }
 }
 
@@ -68,28 +68,29 @@ export function getWeek(date) {
   date = date ? date : new Date();
   const day = date.getDay();
   let week = "";
-  switch(day) {
-      case 0:
-          week = "周日";
+  switch (day) {
+    case 0:
+      week = "周日";
       break;
-      case 1:
-          week = "周一";
+    case 1:
+      week = "周一";
       break;
-      case 2:
-          week = "周二";
+    case 2:
+      week = "周二";
       break;
-      case 3:
-          week = "周三";
+    case 3:
+      week = "周三";
       break;
-      case 4:
-          week = "周四";
+    case 4:
+      week = "周四";
       break;
-      case 5:
-          week = "周五";
+    case 5:
+      week = "周五";
       break;
-      case 6:
-          week = "周六";
+    case 6:
+      week = "周六";
       break;
+    default:
   }
   return week;
 }
@@ -100,26 +101,26 @@ export function getWeek(date) {
 * @param  {[type]} fields [需要进行排序的字段，可以多字段。例：["wtrq", "wtsj"]]
 * @return {[type]}        [排序好了的数组]
 */
-export function sortDesc(array, fields){
-  var getValue = function(obj, fields) {
-      var value = "";
-      for (var i = 0; i < fields.length; i++) {
-          value += obj[fields[i]];
-      }
-      return value;
+export function sortDesc(array, fields) {
+  var getValue = function (obj, fields) {
+    var value = "";
+    for (var i = 0; i < fields.length; i++) {
+      value += obj[fields[i]];
+    }
+    return value;
   }
 
   var len = array.length;
   for (var i = 0; i < len; i++) {
-      for (var j = 0; j < len - i - 1; j++) {
-          var value0 = getValue(array[j], fields);
-          var value1 = getValue(array[j + 1], fields);
-          if (value0 < value1) {
-            var temp = array[j];
-            array[j] = array[j + 1];
-            array[j + 1] = temp;
-          }
+    for (var j = 0; j < len - i - 1; j++) {
+      var value0 = getValue(array[j], fields);
+      var value1 = getValue(array[j + 1], fields);
+      if (value0 < value1) {
+        var temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
       }
+    }
   }
   return array;
 }
@@ -128,7 +129,7 @@ export function sortDesc(array, fields){
 * 数字保留两位小数
 * @param  {[int]} x  [需要转成的数字]
 */
-export function toDecimal2 (x) {
+export function toDecimal2(x) {
   const f = Math.round(parseInt(x) * 100) / 100;
   let s = f.toString();
   let rs = s.indexOf('.');
@@ -136,16 +137,16 @@ export function toDecimal2 (x) {
     rs = s.length;
     s += '.';
   }
-  
+
   while (s.length <= rs + 2) {
     s += '0';
   }
-  if(x > 0 ) {
+  if (x > 0) {
     s = '+' + s;
-  }  
-  return s;    
+  }
+  return s;
 }
-function isObject(value) {
+export function isObject(value) {
   const type = typeof value;
   return value != null && (type === 'object' || type === 'function');
 }
@@ -156,7 +157,7 @@ function isObject(value) {
 * @return {string} value
 */
 export function getQueryString(key) {
-var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-var result = window.location.search.substr(1).match(reg);
-return result ? decodeURIComponent(result[2]) : null;
+  var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+  var result = window.location.search.substr(1).match(reg);
+  return result ? decodeURIComponent(result[2]) : null;
 }
