@@ -5,7 +5,6 @@ import { formatNumber } from '../../../common/js/commonUtils'
 import { Table } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import $ from 'jquery'
 import '../../../common/css/common.less'
 import './home.less'
 
@@ -31,6 +30,9 @@ class Home extends Component {
       strategyReportDate: '',
       hs300BarSeries: [],
       strategyAllArray: [],
+      segment0: "active",
+      segment1: "deactive",
+      segment2: "deactive",
     }
     this.handleTabClick = this.handleTabClick.bind(this)
   }
@@ -264,21 +266,28 @@ class Home extends Component {
 
   handleTabClick(event) {
     event.preventDefault()
-    $('#score-tab-ul li').removeClass('li-active');
-    $(event.target).addClass('li-active');
-
     const { strategyAllArray, strategyTableArray } = this.state;
     const index = event.target.dataset.index  // 为string类型
+    let seg0 = '', seg1 = '', seg2 = ''
     let sortKey = ''
     switch (parseInt(index)) {
       case 0:
         sortKey = 'recentWeek'
+        seg0 = 'active'
+        seg1 = 'deactive'
+        seg2 = 'deactive'
         break
       case 1:
         sortKey = 'recentMonth'
+        seg0 = 'deactive'
+        seg1 = 'active'
+        seg2 = 'deactive'
         break
       case 2:
         sortKey = 'recentYear'
+        seg0 = 'deactive'
+        seg1 = 'deactive'
+        seg2 = 'active'
         break
       default:
         break
@@ -381,11 +390,14 @@ class Home extends Component {
           },
         }],
       },
+      segment0: seg0,
+      segment1: seg1,
+      segment2: seg2,
     })
   }
 
   render() {
-    const { periodSegment, strategyTopBarSeries, strategyTableArray, strategyReportDate } = this.state;
+    const { periodSegment, strategyTopBarSeries, strategyTableArray, strategyReportDate, segment0, segment1, segment2 } = this.state;
     const self = this;
     const columns = this.getTableColumns();
     const getRowKey = function (record) {
@@ -404,9 +416,9 @@ class Home extends Component {
         <div className="strategy-bar-section">
           <div className="period-tab">
             <ul id="score-tab-ul">
-              <li className="li-active" data-index="0" onClick={this.handleTabClick}>最近一周</li>
-              <li data-index="1" onClick={this.handleTabClick}>最近一月</li>
-              <li data-index="2" onClick={this.handleTabClick}>最近一年</li>
+              <li className={segment0} data-index="0" onClick={this.handleTabClick}>最近一周</li>
+              <li className={segment1} data-index="1" onClick={this.handleTabClick}>最近一月</li>
+              <li className={segment2} data-index="2" onClick={this.handleTabClick}>最近一年</li>
             </ul>
           </div>
           <div className="header-gap">
